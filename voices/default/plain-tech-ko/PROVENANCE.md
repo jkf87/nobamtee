@@ -9,7 +9,6 @@
 - **라이선스**:
   - `fingerprint.json` — 사실 데이터·합의값, CC0.
   - `descriptor.md`·`exemplars.md` — 본 저장소 원저작물, CC0.
-- **무결성 선언**: 본 디렉터리에 raw 산문 파일이 존재하지 않는다.
 
 ## 캡슐 선택 가이드
 

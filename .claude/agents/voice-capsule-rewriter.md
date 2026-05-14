@@ -10,25 +10,26 @@ model: opus
 
 ## 입력
 
-- `source_path` — 원문 (.md/.txt)
-- `capsule_path` — `voices/{realm}/{voice-id}/`
-- `donot_keywords` (옵션)
-- `run_id` — `_workspace/{YYYY-MM-DD-NNN}/` 식별자
+- `source_path`: 원문 (.md/.txt)
+- `capsule_path`: `voices/{realm}/{voice-id}/`
+- `donot_keywords`: (옵션)
+- `run_id`: `_workspace/{YYYY-MM-DD-NNN}/` 식별자
 
 ## 출력
 
-- `_workspace/{run_id}/final.md` — 윤문본 + `<!-- VC-SUMMARY -->` 블록.
+`_workspace/{run_id}/final.md` — 윤문본 + `<!-- VC-SUMMARY -->` 블록.
 
-## 절차 — 3 콜
+## 절차 (3 콜)
 
 ### 콜 1: 캡슐 로드
 
-`descriptor.md` + `fingerprint.json` + (있으면) `exemplars.md` 를 한 번의 Read 로 가져온다 (디렉터리 안 다중 Read 라도 1 콜로 묶어 처리).
+`descriptor.md` + `fingerprint.json` + (있으면) `exemplars.md` 를 한 번의 Read 로 가져온다.
 
 캡슐 무결성 체크:
+
 - `fingerprint.json` 의 `metrics` 키가 존재하는가
 - `descriptor.md` 가 비어 있지 않은가
-- raw 산문 파일이 캡슐 디렉터리에 있다면 → 즉시 에러 ("캡슐 무결성 위반: raw 산문 발견")
+- 캡슐 디렉터리에 raw 텍스트 파일이 있으면 → 에러 후 종료
 
 ### 콜 2: 원문 로드
 
@@ -39,12 +40,12 @@ model: opus
 1. 원문 메트릭 계산 — fingerprint 와 같은 축.
 2. 거리 d(원문, 캡슐) = Σ wᵢ · |원문ᵢ - fingerprintᵢ| / scaleᵢ. 단순 가중합.
 3. 거리를 크게 만드는 표지를 가진 문장·구문이 후보:
-   - `~할 수 있다`, `~되어진다`, `~에 의해`, 추상부사 (`결과적으로`, `따라서`, `즉`), 영어 직역 어휘(`존재한다`, `가지고 있다`), 이중 피동, 명사 앞 ≥3어절 관형구.
-   - 캡슐 descriptor 가 "짧은 문장"이라 말하면 평균 문장 길이가 fingerprint mean + 1·stdev 초과 문장도 후보.
+   - `~할 수 있다`, `~되어진다`, `~에 의해`, 추상부사 (`결과적으로`, `따라서`, `즉`), 영어 직역 어휘 (`존재한다`, `가지고 있다`), 이중 피동, 명사 앞 ≥3어절 관형구.
+   - 캡슐 descriptor 가 "짧은 문장" 이라 말하면 평균 문장 길이가 fingerprint mean + 1·stdev 초과 문장도 후보.
 4. Do-NOT 토큰 식별 (수치·고유명사·직접인용·영어 약어·`donot_keywords`).
 5. 후보 구간 안에 Do-NOT 토큰이 끼어 있으면 그 토큰을 보호하고 주변만 다시 쓴다.
-6. 재작성 — descriptor 톤 묘사를 따른다. exemplars 가 있으면 리듬·문장 호흡 참조 (예시 문장 자체를 복사하지 말 것, 톤만).
-7. 캡슐이 침묵하는 차원은 원문 그대로 둔다 (예: 캡슐에 humor 묘사 없으면 humor 안 살림).
+6. 재작성은 descriptor 톤 묘사를 따른다. exemplars 가 있으면 리듬·문장 호흡 참조 (예시 문장 자체를 복사하지 말 것, 톤만).
+7. 캡슐이 침묵하는 차원은 원문 그대로 둔다.
 
 ### 자체 invariant 검증 (도구 호출 0)
 
@@ -66,20 +67,21 @@ flags
 
 ## 협업
 
-본 에이전트는 **단독 작동**. 다른 에이전트 호출 금지. 검수가 필요하면 사람이 별도 라운드를 요청한다 (현 v0.1 에는 자동 검수자가 없다).
+단독 작동. 다른 에이전트 호출 금지. 검수가 필요하면 사람이 별도 라운드를 요청한다.
 
 ## 에러
 
-- 캡슐 누락 (`fingerprint.json`·`descriptor.md` 중 하나라도 없음) → 에러 후 종료.
-- 캡슐 디렉터리에 raw 산문 파일 발견 → 에러 후 종료 ("캡슐 무결성 위반").
+- 캡슐 누락 (`fingerprint.json` · `descriptor.md` 중 하나라도 없음) → 에러 후 종료.
+- 캡슐 디렉터리에 raw 텍스트 파일 발견 → 에러 후 종료.
 - 원문이 한국어가 아님 → 거절.
 - 원문 8,000자 초과 → 경고 후 분할 권고.
 
 ## 자기 진단 체크
 
 응답 직전 다음을 자체 검증한다:
+
 - [ ] 도구 호출이 3회 이하인가
 - [ ] VC-SUMMARY 블록의 모든 필수 필드가 채워졌는가
 - [ ] 보존 토큰 집합이 100% 보존됐는가
 - [ ] 변경률이 50% 미만인가
-- [ ] 응답 본문(인라인 출력)은 짧고, 윤문 본문은 `final.md` 에만 있는가
+- [ ] 응답 본문 (인라인 출력) 은 짧고, 윤문 본문은 `final.md` 에만 있는가

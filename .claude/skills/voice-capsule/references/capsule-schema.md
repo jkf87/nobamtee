@@ -1,6 +1,6 @@
 # Voice Capsule Schema (v0.1)
 
-캡슐은 파일이 아니라 **디렉터리** 다.
+캡슐은 파일이 아니라 디렉터리다.
 
 ```
 voices/{realm}/{voice-id}/
@@ -15,7 +15,7 @@ voices/{realm}/{voice-id}/
 
 ## `fingerprint.json`
 
-캡슐 보이스의 정량 지표. 사실 데이터 → 저작권 없음.
+캡슐 보이스의 정량 지표.
 
 ```json
 {
@@ -38,17 +38,17 @@ voices/{realm}/{voice-id}/
 }
 ```
 
-`tolerance` — 윤문 후 메트릭이 fingerprint ± tolerance 범위에 들면 수렴 판정.
+`tolerance`: 윤문 후 메트릭이 fingerprint ± tolerance 범위에 들면 수렴 판정.
 
-새 지표는 후방 호환만 지키면 자유 추가. 엔진은 미지의 키를 무시해야 한다.
+새 지표는 후방 호환만 지키면 자유 추가. 엔진은 미지의 키를 무시한다.
 
 ## `descriptor.md`
 
-≤300자. 사람이 읽고 톤을 이해할 수 있도록 산문으로 작성. **원저작물.**
+≤300자. 사람이 읽고 톤을 이해할 수 있도록 산문으로 작성.
 
 ## `exemplars.md`
 
-3–5 단락, 단락당 ≤200자. 캡슐 보이스로 새로 쓴 일반 주제 글. 출처 산문의 내용·표현·고유명사를 **재현하지 않는다.** **원저작물.**
+3–5 단락, 단락당 ≤200자. 캡슐 보이스로 새로 쓴 일반 주제 글. 출처 산문의 내용·표현·고유명사를 재현하지 않는다.
 
 ## `PROVENANCE.md`
 
@@ -57,15 +57,13 @@ voices/{realm}/{voice-id}/
 
 - 추출 일자: 2026-05-14
 - 추출 도구: scripts/extract_capsule.py v0.1
-- 출처 메타 정보: {출처 카테고리 또는 로컬 파일명 — 추출 후 폐기}
-- raw 산문 보관 여부: 아니오
+- 출처 메타 정보: {출처 카테고리 또는 로컬 파일명}
 - descriptor 작성: {사람 / 모델+큐레이션}
-- exemplars 작성: {사람} ({date}). 출처 텍스트 미참조 선언.
-- 라이선스: 데이터(json·md) CC0. 출처 산문의 저작권은 본 캡슐과 무관.
+- exemplars 작성: {사람} ({date}).
+- 라이선스: 데이터 (json·md) CC0.
 ```
 
-## 무결성 규칙
+## 규칙
 
-1. 캡슐 디렉터리에 **raw 산문 파일이 존재하지 않는다.** 어기면 캡슐 무효.
-2. `fingerprint.json` 의 `metrics` 는 stdlib 만으로 재계산 가능해야 한다.
-3. `descriptor.md` / `exemplars.md` 변경 시 PROVENANCE 에 변경 기록 추가.
+- `fingerprint.json` 의 `metrics` 는 stdlib 만으로 재계산 가능해야 한다.
+- `descriptor.md` / `exemplars.md` 변경 시 PROVENANCE 에 변경 기록 추가.
