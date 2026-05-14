@@ -1,0 +1,47 @@
+{
+  "voice_id": "plain-tech-ko",
+  "version": "0.1.0",
+  "tolerance": 0.20,
+  "computed_from": "PROVENANCE.md 참조 — 한국어 기술 블로그·문서 register 의 사용자 피드백 3회차로 정의된 목표값",
+  "metrics": {
+    "sentence_count": null,
+    "char_count": null,
+    "sentence_length_mean": 25.0,
+    "sentence_length_stdev": 12.0,
+    "ending_da_ratio": 0.88,
+    "passive_double_ratio": 0.0,
+    "modal_can_ratio": 0.03,
+    "passive_by_ratio": 0.005,
+    "conjunction_density_per_kchar": 3.0,
+    "english_loan_per_kchar": 10.0
+  },
+  "notes": {
+    "sentence_length_mean": "기술 산문은 단문보다 약간 길다. 25자 내외, stdev 12 — 한 문장에 사실 한두 개.",
+    "ending_da_ratio": "~다 / 한다 / 된다 / 낫다 / 끝난다 평서형 우세.",
+    "passive_double_ratio": "이중 피동 (되어진다 류) 0건. 엄격.",
+    "modal_can_ratio": "~할 수 있다 류는 절제하되 0은 아님. 사실상 능력·가능성을 지칭할 때만 허용.",
+    "passive_by_ratio": "~에 의해 류 사실상 없음.",
+    "conjunction_density_per_kchar": "문학 캡슐보다 높게 허용 (단락 전환·연결 필요).",
+    "english_loan_per_kchar": "RDKit·API·LLM 같은 업계 표준 외래어 자유 — concrete-essay-ko 와의 핵심 차이."
+  },
+  "lexicalized_tech_idioms_allowed": [
+    "돌리다 (= execute / run)",
+    "깔리다 / 깔다 (= installed / install)",
+    "끝나다 (= suffice / be done, 비유 아님)",
+    "잡히다 (= attached / configured)",
+    "깨지다 (= build/test fails)",
+    "넘어가다 (= move on)",
+    "짜다 (= compose code/experiment)",
+    "좁히다 (= narrow down)",
+    "묶다 (= bundle / group)"
+  ],
+  "forbidden_creative_metaphors": [
+    "흔들리다 (= shake, 소프트웨어 비유)",
+    "토막나다 (= cut into pieces)",
+    "흘러가다 (= flow, 비유적)",
+    "발이 묶이다 (= feet are tied)",
+    "손에 쥐다 (= hold in hand)",
+    "한 줄로 잇기 (= string into a line, 추상)",
+    "백미 / 백미는 ~ (= the best part, hype)"
+  ]
+}

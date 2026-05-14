@@ -1,0 +1,23 @@
+# Runtime artifacts
+_workspace/
+
+# OMC HUD / session cache
+.omc/
+
+# User-local capsules — never committed
+voices/user/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*~
+
+# Python
+__pycache__/
+*.pyc
+
+# Secrets
+.env
+.env.*

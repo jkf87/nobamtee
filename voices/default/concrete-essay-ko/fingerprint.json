@@ -1,0 +1,26 @@
+{
+  "voice_id": "concrete-essay-ko",
+  "version": "0.1.0",
+  "tolerance": 0.15,
+  "computed_from": "PROVENANCE.md 참조 — 본 register 의 목표 합의값 (외부 코퍼스 미사용)",
+  "metrics": {
+    "sentence_count": null,
+    "char_count": null,
+    "sentence_length_mean": 17.0,
+    "sentence_length_stdev": 9.0,
+    "ending_da_ratio": 0.93,
+    "passive_double_ratio": 0.0,
+    "modal_can_ratio": 0.02,
+    "passive_by_ratio": 0.01,
+    "conjunction_density_per_kchar": 1.5,
+    "english_loan_per_kchar": 0.0
+  },
+  "notes": {
+    "sentence_length_mean": "짧은 단문. 17자 내외, stdev 9 — 가끔 긴 문장 허용하되 평균은 짧게.",
+    "ending_da_ratio": "평서형 ~다 종결이 압도적.",
+    "passive_double_ratio": "이중 피동 (되어진다 류) 0건.",
+    "modal_can_ratio": "~할 수 있다 류 거의 없음 (단언 우선).",
+    "conjunction_density_per_kchar": "1000자당 1~2개 — 접속사 절제.",
+    "english_loan_per_kchar": "영어 외래어 0 (한자 병기는 별개)."
+  }
+}
