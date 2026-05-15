@@ -1,0 +1,12 @@
+nobamtee (voice-capsule engine)
+Copyright 2026 nobamtee contributors
+
+This product includes software developed as part of the nobamtee project
+(https://github.com/jkf87/nobamtee).
+
+Licensed under the Apache License, Version 2.0 (the "License"). You may
+obtain a copy of the License in the LICENSE file at the root of this
+repository or at http://www.apache.org/licenses/LICENSE-2.0.
+
+The default preset data under `voices/default/*/` is additionally
+released under CC0 1.0 Universal at the option of the user.

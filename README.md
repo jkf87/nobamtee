@@ -87,4 +87,4 @@ python3 scripts/extract_capsule.py path/to/source.md \
 
 ## 라이선스
 
-MIT. 디폴트 프리셋 데이터는 CC0.
+Apache-2.0. 디폴트 프리셋 데이터 (`voices/default/*/`) 는 CC0 도 추가 허용.
