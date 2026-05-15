@@ -22,5 +22,84 @@
     "modal_can_ratio": "~할 수 있다 류 거의 없음 (단언 우선).",
     "conjunction_density_per_kchar": "1000자당 1~2개 — 접속사 절제.",
     "english_loan_per_kchar": "영어 외래어 0 (한자 병기는 별개)."
-  }
+  },
+  "auxiliary_detectors": [
+    {
+      "id": "A-1",
+      "pattern": "'~에 대해(서)' 남발 (영어 'about/regarding X' 직역)",
+      "regex": "에 대(하여|해서)",
+      "severity": "S1",
+      "category": "translation",
+      "source": "im-not-ai/taxonomy-v2.0",
+      "example_bad": "AI 규제에 대해 논의할 필요가 있다",
+      "example_good": "AI 규제를 논의해야 한다",
+      "treatment": "목적격 조사로 직결."
+    },
+    {
+      "id": "A-2",
+      "pattern": "'~를 통해(서)' 남발 (영어 'through/via' 직역)",
+      "regex": "을\\s+통(하여|해)|를\\s+통(하여|해)",
+      "severity": "S1",
+      "category": "translation",
+      "source": "im-not-ai/taxonomy-v2.0",
+      "example_bad": "데이터 분석을 통해 인사이트를 얻는다",
+      "example_good": "데이터를 분석해 인사이트를 얻는다",
+      "treatment": "'~로 / ~해서 / ~함으로써' 로 분산."
+    },
+    {
+      "id": "A-7",
+      "pattern": "'가지고 있다' 영어 'have/possess' 직역",
+      "regex": "가지고\\s+(있다|있는|있었다)",
+      "severity": "S1",
+      "category": "translation",
+      "source": "im-not-ai/taxonomy-v2.0",
+      "example_bad": "강한 경쟁력을 가지고 있다",
+      "example_good": "경쟁력이 강하다",
+      "treatment": "형용사형 환원 또는 이중주어 구문 ('X는 Y가 ~')."
+    },
+    {
+      "id": "A-16",
+      "pattern": "영어 대명사 직역 (그/그녀/그것/그들) — 한 단락 ≥3회",
+      "regex": "(^|\\s)(그|그녀|그것|그들|그의|그녀의)(는|가|이|을|를|에게|의)?\\s",
+      "severity": "S1",
+      "category": "translation",
+      "source": "im-not-ai/taxonomy-v2.0",
+      "example_bad": "존은 피곤했다. 그는 앉았다. 그는 한숨을 쉬었다. 그는 그의 시계를 보았다.",
+      "example_good": "존은 피곤했다. 자리에 앉아 한숨을 쉬고는 시계를 보았다.",
+      "treatment": "50-70% 영형 생략. 화자 전환 시점에만 명사구·호칭으로 명시."
+    },
+    {
+      "id": "D-1",
+      "pattern": "종결·요약 lexicon ('결론적으로 / 따라서 / 이를 통해 / 그러므로') 합산 3회 초과",
+      "regex": "결론적으로|이를\\s+통해|그러므로",
+      "severity": "S1",
+      "category": "hype",
+      "source": "im-not-ai/taxonomy-v2.0",
+      "example_bad": "결론적으로, 이는 시사하는 바가 크다.",
+      "example_good": "(삭제. 또는 구체 결론으로 치환.)",
+      "treatment": "대부분 삭제. 한 문서 3회 초과 시 가산."
+    },
+    {
+      "id": "D-4",
+      "pattern": "hype 어휘 ('혁신적·획기적·전례 없는·압도적·막강한·폭발적·파격적·대대적')",
+      "regex": "혁신적|획기적|전례\\s+없는|압도적|막강한|폭발적|파격적|대대적",
+      "severity": "S2",
+      "category": "hype",
+      "source": "im-not-ai/taxonomy-v2.0 (Gemini-우세 v1.3.1)",
+      "example_bad": "압도적 1위 / 막강한 월간 활성 이용자 / 폭발적인 호응을 얻고 있다",
+      "example_good": "1위 / 월간 활성 이용자 / 호응을 얻고 있다",
+      "treatment": "대부분 삭제. 강조가 필요하면 구체 수치·사례로 대체."
+    },
+    {
+      "id": "D-6",
+      "pattern": "'~할 때입니다 / 시점입니다 / 순간입니다' 완결 공식",
+      "regex": "(할 때|할 시점|할 순간)(입니다|이다)",
+      "severity": "S1",
+      "category": "hype",
+      "source": "im-not-ai/taxonomy-v2.0",
+      "example_bad": "에이전트 정부의 시대로 나아가야 할 때입니다",
+      "example_good": "에이전트 정부 단계로 넘어갈 때입니다",
+      "treatment": "구체 동사 단언으로. 한 문서 1회만."
+    }
+  ]
 }

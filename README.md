@@ -84,6 +84,10 @@ python3 scripts/extract_capsule.py path/to/source.md \
 
 ---
 
+## Attribution
+
+디폴트 프리셋의 `auxiliary_detectors` (im-not-ai taxonomy v2.0 기반 S1·S2 패턴 9종) 는 [im-not-ai](https://github.com/epoko77-ai/im-not-ai) v2.0.0 (MIT License, Copyright (c) 2026 epoko77-ai) 의 분류 체계에서 재구성. 원 taxonomy 의 패턴 ID·예시·처방 일부를 사실 데이터 단위로 차용하고 노밤티의 보조 검출기 스키마에 맞춰 압축.
+
 ## 라이선스
 
 Apache-2.0. 디폴트 프리셋 데이터 (`voices/default/*/`) 는 CC0 도 추가 허용.
