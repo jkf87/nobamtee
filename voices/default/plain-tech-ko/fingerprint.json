@@ -43,5 +43,50 @@
     "손에 쥐다 (= hold in hand)",
     "한 줄로 잇기 (= string into a line, 추상)",
     "백미 / 백미는 ~ (= the best part, hype)"
+  ],
+  "forbidden_structural_patterns": [
+    {
+      "id": "trailing_meta_after_block",
+      "name": "표·코드블록·리스트·다이어그램 직후 마무리 메타코멘트 한 줄",
+      "rule": "정보 전달이 끝난 블록 뒤에 그 블록을 요약·재진술하거나 '이렇게 하면 ~ 됩니다' 식 메타 마무리를 다는 패턴. 표 끝나면 다음 H2/H3 로 곧장 넘어간다.",
+      "example_bad": "| ... | ... |\n프리셋만 갈아끼우면 다른 register 로 윤문합니다.",
+      "example_good": "| ... | ... |\n\n## 다음 섹션",
+      "exception": "블록이 답하지 않은 별개 정보 (왜 그렇게 생겼는지, 어떻게 사용하는지) 를 제공하는 경우는 사족 아님."
+    },
+    {
+      "id": "x_only_then_y",
+      "name": "'X만 하면 Y 한다' 평행 단언",
+      "rule": "효율성 강조를 위한 AI 특유 구문. 'X 한 개만 ~ 하면 Y 가 ~ 된다' 형태. 평이한 서술로 풀어 쓴다.",
+      "example_bad": "프리셋만 갈아끼우면 다른 register 로 윤문합니다.",
+      "example_good": "장르에 맞춰 프리셋을 골라 씁니다."
+    },
+    {
+      "id": "a_not_b_pattern",
+      "name": "'A 가 아니라 B 다' 평행 부정",
+      "rule": "AI 가 강조를 위해 즐겨 쓰는 부정-단언 쌍. 직접 단언으로 환원한다.",
+      "example_bad": "캡슐은 파일이 아니라 디렉터리 다.",
+      "example_good": "캡슐은 디렉터리다."
+    },
+    {
+      "id": "em_dash_parenthetical_chain",
+      "name": "em-dash 부연 연쇄 (X — Y — Z)",
+      "rule": "em-dash 로 두 번 이상 부연을 잇는 구조. 괄호 또는 별도 문장으로 분리.",
+      "example_bad": "한국어 표면 지표 — 문장 길이, 종결어미, 외래어 — 로 측정합니다.",
+      "example_good": "한국어 표면 지표 (문장 길이, 종결어미, 외래어) 로 측정합니다."
+    },
+    {
+      "id": "hype_meta_self_reference",
+      "name": "자기과시 메타코멘트",
+      "rule": "'한 줄로 요약하면 이게 전부다', '가장 인상적인 건 ~ 하는 것이다', 'X 의 본질은 ~ 다' 류. 본문에서 사실만 직접 진술한다.",
+      "example_bad": "한 줄로 요약하면 이게 전부다:",
+      "example_good": "작동:"
+    },
+    {
+      "id": "redundant_summary_after_list",
+      "name": "리스트·체크리스트 직후 '이 N 가지가 ~' 재요약",
+      "rule": "방금 N 개를 나열했는데 '이 N 가지가 ~를 보장한다' 식으로 다시 요약하는 패턴. 리스트 자체가 답이다.",
+      "example_bad": "- A\n- B\n- C\n\n이 3 가지가 시스템의 안정성을 보장합니다.",
+      "example_good": "- A\n- B\n- C"
+    }
   ]
 }
