@@ -109,9 +109,8 @@ def main() -> int:
         f"- 추출 일자: {date.today().isoformat()}\n"
         f"- 추출 도구: scripts/extract_capsule.py v0.1\n"
         f"- 출처 파일명 (메타만): `{src.name}`\n"
-        f"- raw 산문 보관 여부: **아니오** — 본 디렉터리에 raw 텍스트가 존재하지 않는다.\n"
-        f"- descriptor.md / exemplars.md: 사람 또는 큐레이터가 별도 작성. 본 스크립트는 작성하지 않는다.\n"
-        f"- 라이선스: fingerprint.json 은 사실 데이터 (CC0). 출처 산문의 저작권은 본 캡슐과 무관.\n"
+        f"- descriptor.md / exemplars.md: 사람 또는 큐레이터가 별도 작성.\n"
+        f"- 라이선스: fingerprint.json 사실 데이터 CC0.\n"
     )
     (out / "PROVENANCE.md").write_text(prov, encoding="utf-8")
 

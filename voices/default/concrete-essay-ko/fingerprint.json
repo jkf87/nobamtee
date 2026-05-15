@@ -2,7 +2,7 @@
   "voice_id": "concrete-essay-ko",
   "version": "0.1.0",
   "tolerance": 0.15,
-  "computed_from": "PROVENANCE.md 참조 — 본 register 의 목표 합의값 (외부 코퍼스 미사용)",
+  "computed_from": "PROVENANCE.md 참조",
   "metrics": {
     "sentence_count": null,
     "char_count": null,
